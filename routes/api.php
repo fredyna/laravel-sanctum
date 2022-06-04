@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //API route using sanctum
-Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/profile', [App\Http\Controllers\API\UserProfileController::class, 'index']);
+    Route::get('/profile', [UserProfileController::class, 'index']);
 
     // API route for logout user
-    Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
